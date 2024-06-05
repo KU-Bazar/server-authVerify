@@ -21,23 +21,16 @@ var (
 func main() {
 	var err error
 
-//	env_err := godotenv.Load(".env")
-//	if env_err != nil {
-//	  log.Fatalf("Some error occured. Err: %s",env_err)
-//	}
+	databaseURL := os.Getenv("DATABASE_URL")
+	googleClientID := os.Getenv("GOOGLE_CLIENT_ID")
 
-
-	connStr := fmt.Sprintf(
-		"user=%s password=%s dbname=%s sslmode=disable ",
-		os.Getenv("DB_USER"),
-		os.Getenv("DB_PASSWORD"),
-		os.Getenv("DB_NAME"),
-	)
-	fmt.Printf("Connecting to database: %s\n", connStr)
-	db, err = sql.Open("postgres", connStr)
+	
+	fmt.Printf("Connecting to database: %s\n", databaseURL)
+	db, err = sql.Open("postgres", databaseURL)
 	if err != nil {
-		log.Fatalf("Error opening database: %q", err)
+		log.Fatalf("Error opening database: %v", err)
 	}
+	
 	defer db.Close()
 	
 	createTable()
