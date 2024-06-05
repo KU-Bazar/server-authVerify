@@ -21,10 +21,10 @@ var (
 func main() {
 	var err error
 
-	env_err := godotenv.Load(".env")
-	if env_err != nil {
-	  log.Fatalf("Some error occured. Err: %s",env_err)
-	}
+//	env_err := godotenv.Load(".env")
+//	if env_err != nil {
+//	  log.Fatalf("Some error occured. Err: %s",env_err)
+//	}
 
 
 	connStr := fmt.Sprintf(
